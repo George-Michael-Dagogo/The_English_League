@@ -1,9 +1,27 @@
-from main import *
+import requests
+from bs4 import BeautifulSoup
 import pandas as pd
-def to_blob(func):
-    file_name = func.__name__
-    func = func()
-    blob_name = f"{file_name}.parquet"
-    print(blob_name)
+import numpy as np
 
-to_blob(detail_top)
+def league_table():
+
+    url = 'https://www.espn.com/soccer/standings/_/league/eng.1'
+    headers = []
+    page = requests.get(url)
+    soup = BeautifulSoup(page.text,  "html.parser")
+    print(page)
+    table= soup.find("table", class_="ssrcss-14j0ip6-Table e3bga5w5")
+
+    for i in table.find_all('th'):
+        title = i.text
+        headers.append(title)
+    league_table = pd.DataFrame(columns = headers)
+    for j in table.find_all('tr')[1:]:
+        row_data = j.find_all('td')
+        row = [i.text for i in row_data]
+        length = len(league_table)
+        league_table.loc[length] = row
+    league_table.drop(["Form, Last 6 games, Oldest first"], axis=1, inplace=True)
+    return league_table
+
+league_table()
