@@ -1,4 +1,4 @@
-from main import *
+from scrape import *
 import pandas as pd
 from sqlalchemy import create_engine
 

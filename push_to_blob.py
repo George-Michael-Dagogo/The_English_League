@@ -1,4 +1,4 @@
-from main import *
+from scrape import *
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -18,7 +18,7 @@ def to_blob(func):
     parquet_buffer = BytesIO()
     pq.write_table(table, parquet_buffer)
 
-    connection_string = ""
+    connection_string = "core.windows.net"
     blob_service_client = BlobServiceClient.from_connection_string(connection_string)
 
     container_name = "testtech"
