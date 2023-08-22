@@ -29,6 +29,4 @@ jobs:
           HOST: ${{ secrets.CONN_STRING }}
         run: python main.py
         
-  
 
-          HOST: ${{ secrets.CONN_STRING }}
