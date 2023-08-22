@@ -1,6 +1,7 @@
 from scrape import *
 import pandas as pd
 from sqlalchemy import create_engine
+import psycopg2
 
 functions = [league_table,top_scorers,detail_top,player_table,all_time_table,all_time_winner_club,top_scorers_seasons,goals_per_season]
 
