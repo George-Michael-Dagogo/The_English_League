@@ -25,8 +25,8 @@ jobs:
           
       - name: execute extract script # run ./Updating_with_BS4/to_csvs.py
         env:
-          DATABASE: ${{ secrets.BLOB_CONN_STRING }}
-          HOST: ${{ secrets.CONN_STRING }}
+          BLOB_CONN_STRING: ${{ secrets.BLOB_CONN_STRING }}
+          CONN_STRING: ${{ secrets.CONN_STRING }}
         run: python main.py
         
 
