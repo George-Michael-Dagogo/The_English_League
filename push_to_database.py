@@ -2,11 +2,15 @@ from scrape import *
 import pandas as pd
 from sqlalchemy import create_engine
 import psycopg2
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 functions = [league_table,top_scorers,detail_top,player_table,all_time_table,all_time_winner_club,top_scorers_seasons,goals_per_season]
 
 
-conn_string = 'postgresql://testtech:Michael1234@testtech.postgres.database.azure.com:5432/postgres'
+conn_string = os.getenv('CONN_STRING')
 
 db = create_engine(conn_string)
 conn = db.connect() 

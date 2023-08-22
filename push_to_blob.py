@@ -18,7 +18,7 @@ def to_blob(func):
     parquet_buffer = BytesIO()
     pq.write_table(table, parquet_buffer)
 
-    connection_string = "DefaultEndpointt"
+    connection_string = os.getenv('BLOB_CONN_STRING')
     blob_service_client = BlobServiceClient.from_connection_string(connection_string)
 
     container_name = "testtech"
